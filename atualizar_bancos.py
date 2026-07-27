@@ -59,7 +59,7 @@ VERBS_SEED = [
     "fiqueiESPERANDO", "danceiATEOFIM", "choreiDEALEGRIA", "comiTUDINHO",
     "griteiGOOOL", "ameiDEMAIS", "vouVIAJAR", "canteiBEMALTO", "dormiTARDE",
     "ganheiNALOTO", "venciNOFINAL", "sorriTODODIA", "volteiPRACASA",
-    "acordeiCEDO", "sofriCALADO", "riDEMAIS", "puleiOMURO", "torciMUITO",
+    "acordeiCEDO", "sofriCALADO", "riDEMAIS", "puleiOMURO", "torciMUITO", "FazPARTE", "SeiDENADA", "Foi-seCEDO", "TambémACHO", "OBRIGADOmeupovo",
 ]
 
 SPECIALS_SEED = ["!", "~", "@", "#", "$", "%", "&", "*"]
