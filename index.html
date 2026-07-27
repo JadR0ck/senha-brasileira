@@ -98,13 +98,33 @@
     overflow: hidden;
   }
 
-  .output { padding: 24px 24px 22px; border-bottom: 1px solid var(--border); }
+  .output { padding: 24px 24px 22px; border-bottom: 1px solid var(--border); position: relative; }
   .output-head {
     display: flex; justify-content: space-between; align-items: baseline;
     font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted);
     margin-bottom: 14px;
   }
   .output-head .meta { font-family: var(--font-mono); letter-spacing: 0.02em; text-transform: none; }
+
+  /* locked state — senha desfocada até o usuário gerar */
+  .output .veil { filter: blur(9px); opacity: .5; pointer-events: none; user-select: none; transition: filter .4s ease, opacity .4s ease; }
+  .output.revealed .veil { filter: none; opacity: 1; pointer-events: auto; user-select: auto; }
+  .lock-hint {
+    position: absolute; inset: 0; z-index: 3;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+    text-align: center; cursor: pointer; border: 0; background: transparent; font-family: inherit;
+    transition: opacity .35s ease;
+  }
+  .lock-hint:hover .ico { transform: translateY(-1px); border-color: color-mix(in oklch, var(--accent), transparent 45%); }
+  .lock-hint .ico {
+    width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+    color: var(--accent); background: var(--accent-soft); border: 1px solid var(--border-2);
+    margin-bottom: 4px; transition: transform .2s ease, border-color .2s ease;
+  }
+  .lock-hint .ico svg { width: 20px; height: 20px; }
+  .lock-hint .t { font-size: 13.5px; font-weight: 600; color: var(--fg); letter-spacing: -0.01em; }
+  .lock-hint .s { font-size: 12px; color: var(--muted); }
+  .output.revealed .lock-hint { opacity: 0; pointer-events: none; }
 
   .pw-row { display: flex; align-items: center; gap: 10px; }
   .pw {
@@ -312,38 +332,50 @@
 
     <!-- ============ GENERATOR ============ -->
     <main class="card" data-od-id="generator">
-      <section class="output">
+      <section class="output" id="output">
         <div class="output-head">
           <span>Sua senha</span>
           <span class="meta" id="meta">—</span>
         </div>
 
-        <div class="pw-row">
-          <div class="pw" id="pw" aria-live="polite" title="Clique para selecionar"></div>
-          <button class="icon-btn" id="regenBtn" title="Gerar outra (Espaço)" aria-label="Gerar outra senha">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/>
-              <path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/>
-            </svg>
-          </button>
-          <button class="icon-btn" id="copyBtn" title="Copiar" aria-label="Copiar senha">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="9" y="9" width="12" height="12" rx="2.2"/>
-              <path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/>
-            </svg>
-          </button>
+        <div class="veil">
+          <div class="pw-row">
+            <div class="pw" id="pw" aria-live="polite" title="Clique para selecionar">•••••••••••••••••••</div>
+            <button class="icon-btn" id="regenBtn" title="Gerar outra (Espaço)" aria-label="Gerar outra senha">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/>
+                <path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/>
+              </svg>
+            </button>
+            <button class="icon-btn" id="copyBtn" title="Copiar" aria-label="Copiar senha">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="12" height="12" rx="2.2"/>
+                <path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="anatomy" id="anatomy">
+            <span class="chip"><span class="sw" style="background:var(--rosa)"></span> Referência: <b id="aRef">—</b></span>
+            <span class="chip"><span class="sw" style="background:var(--accent)"></span> Verbo: <b id="aVb">—</b></span>
+            <span class="chip"><span class="sw" style="background:var(--verde)"></span> Número: <b id="aNm">—</b></span>
+          </div>
+
+          <div class="meter">
+            <div class="meter-track"><div class="meter-fill" id="meterFill"></div></div>
+            <div class="meter-word" id="meterWord">—</div>
+          </div>
         </div>
 
-        <div class="anatomy" id="anatomy">
-          <span class="chip"><span class="sw" style="background:var(--rosa)"></span> Referência: <b id="aRef">—</b></span>
-          <span class="chip"><span class="sw" style="background:var(--accent)"></span> Verbo: <b id="aVb">—</b></span>
-          <span class="chip"><span class="sw" style="background:var(--verde)"></span> Número: <b id="aNm">—</b></span>
-        </div>
-
-        <div class="meter">
-          <div class="meter-track"><div class="meter-fill" id="meterFill"></div></div>
-          <div class="meter-word" id="meterWord">—</div>
-        </div>
+        <button type="button" class="lock-hint" id="lockHint" aria-label="Gerar minha senha">
+          <span class="ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="10" width="16" height="10" rx="2.4"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+            </svg>
+          </span>
+          <span class="t">Sua senha aparece aqui</span>
+          <span class="s">Clique para gerar</span>
+        </button>
       </section>
 
       <section class="controls">
@@ -399,7 +431,7 @@
     <!-- ============ EVERYWHERE ============ -->
     <section class="block" id="everywhere">
       <h2>Use em todos os lugares</h2>
-      <p class="sub">A mágica é um prefixo de 2 letras. Mesma senha base em todo lugar, só troque as duas primeiras letras.</p>
+      <p class="sub">A mágica é um prefixo de 2 letras. Mesma senha base em todo lugar — só troque as duas primeiras letras.</p>
 
       <div class="prefix-tool">
         <div class="prefix-input">
@@ -561,6 +593,7 @@
     setStrength(current.plain);
     updatePrefix();
     hideBatch();
+    $("output").classList.add("revealed");   // tira o desfoque na primeira geração
   }
 
   function generateBatch(n) {
@@ -650,6 +683,7 @@
 
   // ---------- events ----------
   $("genBtn").addEventListener("click", () => { generate(); renderExamples(); });
+  $("lockHint").addEventListener("click", () => { generate(); renderExamples(); });
   $("regenBtn").addEventListener("click", (e) => {
     const b = e.currentTarget; b.classList.remove("spin"); void b.offsetWidth; b.classList.add("spin");
     generate(); renderExamples();
@@ -696,13 +730,12 @@
     }
   }
 
-  // init
+  // init — começa TRAVADO (senha desfocada); só gera quando o usuário clica
   renderGrid();
   (async () => {
     await carregarBancos();   // tenta notícias do dia; cai na reserva se falhar
     refreshHowExample();
-    generate();
-    renderExamples();
+    renderExamples();         // exemplos de prefixo funcionam com base vazia
   })();
 })();
 </script>
