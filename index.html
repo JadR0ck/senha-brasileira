@@ -1,0 +1,710 @@
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gerador de senhas brasileiras</title>
+<style>
+  :root {
+    --bg:      oklch(99% 0.002 240);
+    --surface: oklch(100% 0 0);
+    --fg:      oklch(18% 0.012 250);
+    --muted:   oklch(54% 0.012 250);
+    --faint:   oklch(70% 0.01 250);
+    --border:  oklch(92% 0.005 250);
+    --border-2:oklch(88% 0.008 250);
+    --accent:  oklch(58% 0.18 255);
+    --accent-soft: oklch(58% 0.18 255 / 0.09);
+    --verde:   oklch(58% 0.14 155);
+    --rosa:    oklch(58% 0.16 25);
+
+    --weak:    oklch(62% 0.20 25);
+    --fair:    oklch(72% 0.16 70);
+    --good:    oklch(66% 0.15 145);
+    --strong:  oklch(60% 0.15 160);
+
+    --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
+    --font-body:    -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
+    --font-mono:    ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace;
+
+    --radius: 16px;
+    --maxw: 720px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    color: var(--fg);
+    background:
+      radial-gradient(120% 90% at 50% -8%, oklch(97% 0.014 255) 0%, var(--bg) 42%);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.5;
+    padding: 0 20px 72px;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; }
+
+  /* ---------- brand ---------- */
+  header.brand {
+    display: flex; align-items: center; gap: 10px;
+    padding: 30px 2px 0;
+    max-width: var(--maxw); margin: 0 auto;
+  }
+  .brand .mark { width: 30px; height: 30px; display: grid; place-items: center; color: var(--accent); }
+  .brand .mark svg { width: 25px; height: 25px; display: block; }
+  .brand .name { font-size: 15px; font-weight: 600; letter-spacing: -0.02em; }
+  .brand .name span { color: var(--faint); font-weight: 450; }
+  .brand .tag {
+    margin-inline-start: auto;
+    font-size: 12px; color: var(--muted); letter-spacing: -0.005em;
+    display: none;
+  }
+  @media (min-width: 560px) { .brand .tag { display: block; } }
+
+  /* ---------- hero ---------- */
+  .hero { text-align: center; padding: 46px 0 26px; }
+  .hero .kicker {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 11px; font-weight: 550; letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--border-2); border-radius: 99px;
+    padding: 5px 12px; margin-bottom: 20px;
+  }
+  .hero .kicker .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--verde); }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 6.4vw, 46px);
+    font-weight: 600; letter-spacing: -0.03em; line-height: 1.05;
+    max-width: 15ch; margin: 0 auto;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero p {
+    margin: 16px auto 0; max-width: 46ch;
+    font-size: 16px; color: var(--muted); letter-spacing: -0.006em;
+    text-wrap: pretty;
+  }
+
+  /* ---------- generator card ---------- */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 1px 2px oklch(18% 0.012 250 / 0.04), 0 18px 44px oklch(18% 0.012 250 / 0.06);
+    overflow: hidden;
+  }
+
+  .output { padding: 24px 24px 22px; border-bottom: 1px solid var(--border); }
+  .output-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .output-head .meta { font-family: var(--font-mono); letter-spacing: 0.02em; text-transform: none; }
+
+  .pw-row { display: flex; align-items: center; gap: 10px; }
+  .pw {
+    flex: 1; min-width: 0;
+    font-family: var(--font-mono);
+    font-size: clamp(17px, 4.6vw, 23px);
+    line-height: 1.35; letter-spacing: 0.005em;
+    word-break: break-all; user-select: all;
+  }
+  .pw .sp  { color: var(--rosa); }
+  .pw .rf  { color: var(--fg); }
+  .pw .sep { color: var(--faint); }
+  .pw .vb  { color: var(--accent); font-weight: 600; }
+  .pw .nm  { color: var(--verde); }
+
+  .icon-btn {
+    flex-shrink: 0; width: 42px; height: 42px;
+    display: grid; place-items: center;
+    border: 1px solid var(--border-2); background: var(--surface);
+    border-radius: 11px; color: var(--muted); cursor: pointer;
+    transition: color .15s, border-color .15s, transform .1s;
+  }
+  .icon-btn:hover { color: var(--fg); border-color: oklch(82% 0.01 250); }
+  .icon-btn:active { transform: scale(0.93); }
+  .icon-btn svg { width: 19px; height: 19px; }
+  .icon-btn.spin svg { animation: spin .5s ease; }
+  @keyframes spin { to { transform: rotate(180deg); } }
+  #copyBtn.copied { color: var(--strong); border-color: color-mix(in oklch, var(--strong), transparent 60%); }
+
+  /* anatomy chips */
+  .anatomy { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 11.5px; color: var(--muted);
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 5px 9px;
+  }
+  .chip .sw { width: 8px; height: 8px; border-radius: 2px; }
+  .chip b { color: var(--fg); font-weight: 550; }
+
+  /* strength */
+  .meter { margin-top: 18px; display: flex; align-items: center; gap: 13px; }
+  .meter-track { flex: 1; height: 5px; border-radius: 99px; background: oklch(93% 0.005 250); overflow: hidden; }
+  .meter-fill { height: 100%; width: 0; border-radius: 99px; background: var(--muted); transition: width .4s cubic-bezier(.2,.7,.2,1), background .4s; }
+  .meter-word { font-size: 12px; font-weight: 550; min-width: 66px; text-align: end; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+  /* controls row */
+  .controls { padding: 18px 24px 22px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .generate {
+    flex: 1; min-width: 200px;
+    padding: 14px; border: none; border-radius: 12px;
+    background: var(--accent); color: #fff;
+    font-family: inherit; font-size: 14.5px; font-weight: 550; letter-spacing: -0.005em;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: filter .15s, transform .1s;
+  }
+  .generate:hover { filter: brightness(1.06); }
+  .generate:active { transform: translateY(1px); }
+  .generate svg { width: 17px; height: 17px; }
+  .batch { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
+  .batch button {
+    font-family: var(--font-mono); font-size: 12.5px;
+    background: none; border: 1px solid var(--border-2); border-radius: 7px;
+    padding: 6px 9px; color: var(--muted); cursor: pointer; transition: color .15s, border-color .15s;
+  }
+  .batch button:hover { color: var(--accent); border-color: color-mix(in oklch, var(--accent), transparent 55%); }
+
+  /* batch output list */
+  .batch-list { padding: 0 24px; display: none; }
+  .batch-list.show { display: block; padding-bottom: 8px; }
+  .batch-list .row {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-mono); font-size: 13px;
+    padding: 10px 0; border-top: 1px solid var(--border); word-break: break-all;
+  }
+  .batch-list .row .mini-copy { margin-inline-start: auto; flex-shrink: 0; color: var(--faint); cursor: pointer; }
+  .batch-list .row .mini-copy:hover { color: var(--accent); }
+  .batch-list .row .mini-copy svg { width: 15px; height: 15px; display: block; }
+
+  .card-foot {
+    padding: 13px 24px; border-top: 1px solid var(--border);
+    font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 8px; justify-content: center;
+    text-align: center; letter-spacing: -0.004em;
+  }
+  .card-foot svg { width: 14px; height: 14px; color: var(--verde); flex-shrink: 0; }
+  .card-foot b { font-weight: 550; color: oklch(42% 0.012 250); font-family: var(--font-mono); font-size: 11.5px; }
+
+  /* ---------- section scaffolding ---------- */
+  section.block { padding-top: 60px; }
+  .block h2 {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 4.4vw, 28px); font-weight: 600; letter-spacing: -0.02em;
+    text-align: center;
+  }
+  .block .sub { text-align: center; color: var(--muted); font-size: 15px; max-width: 44ch; margin: 12px auto 0; text-wrap: pretty; }
+
+  /* how it works */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 32px; }
+  @media (max-width: 620px) { .steps { grid-template-columns: 1fr; } }
+  .step { border: 1px solid var(--border); border-radius: 13px; background: var(--surface); padding: 20px 18px; }
+  .step .n {
+    width: 26px; height: 26px; border-radius: 8px;
+    display: grid; place-items: center; font-size: 13px; font-weight: 600;
+    font-family: var(--font-mono); color: var(--accent); background: var(--accent-soft);
+    margin-bottom: 14px;
+  }
+  .step h3 { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+  .step p { font-size: 13.5px; color: var(--muted); margin-top: 6px; text-wrap: pretty; }
+  .step .ex {
+    margin-top: 13px; font-family: var(--font-mono); font-size: 12.5px;
+    padding: 7px 10px; border-radius: 7px; background: oklch(97% 0.004 250);
+    border: 1px solid var(--border); word-break: break-all;
+  }
+  .step:nth-child(1) .ex { color: var(--rosa); }
+  .step:nth-child(2) .ex { color: var(--accent); }
+  .step:nth-child(3) .ex { color: var(--verde); }
+
+  .final-line {
+    margin-top: 22px; display: flex; align-items: center; gap: 12px; justify-content: center; flex-wrap: wrap;
+    font-size: 13px; color: var(--muted);
+  }
+  .final-line code {
+    font-family: var(--font-mono); font-size: 14px; color: var(--fg);
+    background: var(--surface); border: 1px solid var(--border-2); border-radius: 8px;
+    padding: 8px 12px; word-break: break-all;
+  }
+
+  /* everywhere / prefix tool */
+  .prefix-tool { margin-top: 30px; border: 1px solid var(--border); border-radius: 15px; background: var(--surface); overflow: hidden; }
+  .prefix-input { display: flex; align-items: center; gap: 12px; padding: 18px 20px; border-bottom: 1px solid var(--border); }
+  .prefix-input label { font-size: 13px; color: var(--muted); white-space: nowrap; }
+  .prefix-input input {
+    flex: 1; min-width: 0; font-family: inherit; font-size: 15px; color: var(--fg);
+    border: 1px solid var(--border-2); border-radius: 9px; padding: 10px 12px; background: var(--bg);
+    transition: border-color .15s;
+  }
+  .prefix-input input:focus { outline: none; border-color: var(--accent); }
+  .prefix-result { padding: 18px 20px; display: flex; align-items: center; gap: 12px; }
+  .prefix-badge {
+    font-family: var(--font-mono); font-weight: 650; font-size: 15px; color: #fff;
+    background: var(--accent); border-radius: 8px; padding: 6px 10px; letter-spacing: 0.03em; flex-shrink: 0;
+  }
+  .prefix-final { font-family: var(--font-mono); font-size: 14px; word-break: break-all; }
+  .prefix-final .pfx { color: var(--accent); font-weight: 650; }
+  .prefix-examples { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 18px; }
+  @media (max-width: 560px) { .prefix-examples { grid-template-columns: 1fr; } }
+  .pex {
+    display: flex; align-items: center; gap: 11px;
+    border: 1px solid var(--border); border-radius: 10px; padding: 11px 13px; background: var(--surface);
+  }
+  .pex .badge { font-family: var(--font-mono); font-weight: 650; font-size: 12px; color: var(--accent); background: var(--accent-soft); border-radius: 6px; padding: 4px 7px; }
+  .pex .site { font-size: 13px; font-weight: 500; }
+  .pex .val { margin-inline-start: auto; font-family: var(--font-mono); font-size: 11.5px; color: var(--faint); }
+
+  /* golden rules */
+  .rules { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 32px; }
+  @media (max-width: 620px) { .rules { grid-template-columns: 1fr; } }
+  .rule { border: 1px solid var(--border); border-radius: 13px; background: var(--surface); padding: 20px 18px; }
+  .rule .ico { width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; color: var(--accent); background: var(--accent-soft); margin-bottom: 14px; }
+  .rule .ico svg { width: 18px; height: 18px; }
+  .rule h3 { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+  .rule p { font-size: 13.5px; color: var(--muted); margin-top: 6px; text-wrap: pretty; }
+
+  /* prefix table */
+  .pref-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin-top: 30px; }
+  .pcell { display: flex; align-items: center; gap: 9px; border: 1px solid var(--border); border-radius: 9px; padding: 9px 11px; background: var(--surface); }
+  .pcell .badge { font-family: var(--font-mono); font-weight: 650; font-size: 11px; color: var(--muted); background: oklch(96% 0.004 250); border: 1px solid var(--border); border-radius: 5px; padding: 3px 6px; letter-spacing: 0.04em; }
+  .pcell .site { font-size: 13px; }
+
+  footer.foot { text-align: center; padding-top: 62px; }
+  footer.foot .line { font-size: 13px; color: var(--muted); }
+  footer.foot .line b { color: var(--fg); font-weight: 600; }
+  footer.foot .sm { font-size: 12px; color: var(--faint); margin-top: 8px; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 12px);
+    background: var(--fg); color: var(--bg); font-size: 12.5px; font-weight: 500;
+    padding: 10px 16px; border-radius: 10px; display: flex; align-items: center; gap: 8px;
+    opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s;
+    box-shadow: 0 10px 28px oklch(18% 0.012 250 / 0.22); z-index: 20;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+  .toast svg { width: 15px; height: 15px; color: var(--strong); }
+</style>
+</head>
+<body>
+  <header class="brand">
+    <span class="mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3.5" y="10" width="17" height="10.5" rx="2.4"/>
+        <path d="M7.5 10V7a4.5 4.5 0 0 1 9 0v3"/>
+        <circle cx="12" cy="15.2" r="1.4" fill="currentColor" stroke="none"/>
+      </svg>
+    </span>
+    <span class="name">senha<span>brasileira</span></span>
+    <span class="tag">Fácil pra você, impossível pra máquina</span>
+  </header>
+
+  <div class="wrap">
+    <div class="hero">
+      <span class="kicker"><span class="dot"></span> Segurança com jeito de Brasil</span>
+      <h1>Senhas brasileiras que você <em>nunca esquece</em>.</h1>
+      <p>Referência cultural + verbo conjugado + número marcante. Longas o bastante pra travar qualquer robô, familiares o bastante pra você lembrar.</p>
+    </div>
+
+    <!-- ============ GENERATOR ============ -->
+    <main class="card" data-od-id="generator">
+      <section class="output">
+        <div class="output-head">
+          <span>Sua senha</span>
+          <span class="meta" id="meta">—</span>
+        </div>
+
+        <div class="pw-row">
+          <div class="pw" id="pw" aria-live="polite" title="Clique para selecionar"></div>
+          <button class="icon-btn" id="regenBtn" title="Gerar outra (Espaço)" aria-label="Gerar outra senha">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/>
+              <path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/>
+            </svg>
+          </button>
+          <button class="icon-btn" id="copyBtn" title="Copiar" aria-label="Copiar senha">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="12" height="12" rx="2.2"/>
+              <path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="anatomy" id="anatomy">
+          <span class="chip"><span class="sw" style="background:var(--rosa)"></span> Referência: <b id="aRef">—</b></span>
+          <span class="chip"><span class="sw" style="background:var(--accent)"></span> Verbo: <b id="aVb">—</b></span>
+          <span class="chip"><span class="sw" style="background:var(--verde)"></span> Número: <b id="aNm">—</b></span>
+        </div>
+
+        <div class="meter">
+          <div class="meter-track"><div class="meter-fill" id="meterFill"></div></div>
+          <div class="meter-word" id="meterWord">—</div>
+        </div>
+      </section>
+
+      <section class="controls">
+        <button class="generate" id="genBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+          Gerar senha brasileira
+        </button>
+        <div class="batch">
+          ou gere
+          <button data-n="3">3</button>
+          <button data-n="5">5</button>
+          <button data-n="10">10</button>
+        </div>
+      </section>
+
+      <div class="batch-list" id="batchList"></div>
+
+      <div class="card-foot">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Gerada no seu navegador com <b>crypto.getRandomValues</b> — nada é salvo, cada senha é única.<span id="fonteNota"></span>
+      </div>
+    </main>
+
+    <!-- ============ HOW IT WORKS ============ -->
+    <section class="block" id="como">
+      <h2>Como funciona</h2>
+      <p class="sub">Três ingredientes que a máquina não adivinha, mas você reconhece de cara.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="n">1</div>
+          <h3>Referência cultural</h3>
+          <p>Memes, músicas, novelas e bordões brasileiros que já moram na sua cabeça.</p>
+          <div class="ex" id="ex1">!asemanainteira</div>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <h3>Verbo conjugado</h3>
+          <p>Conjugação em português informal embaralha padrões — não está em dicionário nenhum.</p>
+          <div class="ex" id="ex2">fiqueiESPERANDO</div>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <h3>Número marcante</h3>
+          <p>Um ano ou número que só faz sentido pra você, fechando a senha.</p>
+          <div class="ex" id="ex3">2027</div>
+        </div>
+      </div>
+      <div class="final-line">
+        Senha final: <code id="finalLine">!asemanainteira-fiqueiESPERANDO2027</code>
+      </div>
+    </section>
+
+    <!-- ============ EVERYWHERE ============ -->
+    <section class="block" id="everywhere">
+      <h2>Use em todos os lugares</h2>
+      <p class="sub">A mágica é um prefixo de 2 letras. Mesma senha base em todo lugar — só troque as duas primeiras letras.</p>
+
+      <div class="prefix-tool">
+        <div class="prefix-input">
+          <label for="siteInput">Site ou app</label>
+          <input id="siteInput" type="text" placeholder="ex.: Instagram, Nubank, Gmail…" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="prefix-result">
+          <span class="prefix-badge" id="prefixBadge">IN</span>
+          <span class="prefix-final" id="prefixFinal"></span>
+          <button class="icon-btn" id="prefixCopy" title="Copiar" aria-label="Copiar senha do site" style="margin-inline-start:auto;width:38px;height:38px">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.2"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="prefix-examples" id="prefixExamples"></div>
+    </section>
+
+    <!-- ============ GOLDEN RULES ============ -->
+    <section class="block" id="regras">
+      <h2>Regras de ouro</h2>
+      <p class="sub">Pra essa técnica funcionar de verdade, sem virar armadilha.</p>
+      <div class="rules">
+        <div class="rule">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg></div>
+          <h3>Nunca armazenamos nada</h3>
+          <p>Nenhuma senha é salva em banco de dados. Ela existe só na sua sessão do navegador. Fechou a aba, não há registro.</p>
+        </div>
+        <div class="rule">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg></div>
+          <h3>Troque só o número</h3>
+          <p>Uma vez por ano, mude apenas o número final (2027 → 2028). Senha renovada, esforço zero.</p>
+        </div>
+        <div class="rule">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h11l-1 7a4.5 4.5 0 0 1-9 0z"/><path d="M9 21h6M12 15v6"/></svg></div>
+          <h3>Conjugação = proteção</h3>
+          <p>Ataques de dicionário usam palavras exatas. Verbos conjugados no português informal não estão em lista alguma.</p>
+        </div>
+        <div class="rule">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.6" fill="currentColor"/></svg></div>
+          <h3>Fácil pra você, impossível pra máquina</h3>
+          <p>25+ caracteres misturando maiúsculas, minúsculas, número e símbolo levam um tempo absurdo pra quebrar na força bruta.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PREFIX TABLE ============ -->
+    <section class="block" id="tabela">
+      <h2>Tabela de prefixos rápidos</h2>
+      <p class="sub">As duas primeiras letras de cada site. Decore a base, troque só o prefixo.</p>
+      <div class="pref-grid" id="prefGrid"></div>
+    </section>
+
+    <footer class="foot">
+      <p class="line"><b>senhabrasileira</b> — projeto educativo de segurança digital com a cara do Brasil.</p>
+      <p class="sm">Nenhuma senha é armazenada. Use com sabedoria.</p>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg>
+    <span id="toastMsg">Senha copiada</span>
+  </div>
+
+<script>
+(() => {
+  // ---------- banks (reserva local; sobrescritos por bancos.json do dia) ----------
+  // Estas listas são só o fallback caso bancos.json não carregue (ex.: aberto
+  // como file:// sem servidor). Em produção, atualizar_bancos.py regenera
+  // bancos.json diariamente a partir das notícias de cultura pop do Brasil.
+  let REFS = [
+    "asemanainteira","queridodiario","noveladasnove","saudadedomeuex","festajunina",
+    "paodequeijo","brigadeirodecolher","feijoadadedomingo","churrascocompao","sextouarrasou",
+    "cafecomleite","praiadeipanema","vaicorinthians","aquelabeijoca","sofrenciaboa",
+    "jabuticaba","chorareusei","seratchau","monstrodobbb","receberespeito"
+  ];
+  let VERBS = [
+    "fiqueiESPERANDO","danceiATEOFIM","choreiDEALEGRIA","comiTUDINHO","griteiGOOOL",
+    "ameiDEMAIS","vouVIAJAR","canteiBEMALTO","dormiTARDE","ganheiNALOTO",
+    "venciNOFINAL","sorriTODODIA","volteiPRACASA","acordeiCEDO","sofriCALADO"
+  ];
+  let NUMS = ["2027","1994","2002","1500","171","021","011","300","7x1","171k"];
+  let SPECIALS = ["!","~","@","#","$","%","&","*"];
+
+  // ---------- sites / prefixes ----------
+  const SITES = [
+    ["AL","AliExpress"],["AM","Amazon"],["BR","Bradesco"],["CA","Caixa"],["FA","Facebook"],
+    ["GI","GitHub"],["GM","Gmail"],["IF","iFood"],["IN","Instagram"],["IT","Itaú"],
+    ["LI","LinkedIn"],["ME","Mercado Livre"],["NE","Netflix"],["NU","Nubank"],["PI","PicPay"],
+    ["SH","Shopee"],["SP","Spotify"],["TE","Telegram"],["TW","Twitter / X"],["UB","Uber"],
+    ["WH","WhatsApp"],["YT","YouTube"]
+  ];
+
+  const $ = (id) => document.getElementById(id);
+  const pwEl = $("pw"), metaEl = $("meta"), toast = $("toast"), toastMsg = $("toastMsg");
+  const meterFill = $("meterFill"), meterWord = $("meterWord");
+
+  // secure random int in [0, max) — no modulo bias
+  function randInt(max) {
+    const limit = Math.floor(0x100000000 / max) * max;
+    const buf = new Uint32Array(1); let x;
+    do { crypto.getRandomValues(buf); x = buf[0]; } while (x >= limit);
+    return x % max;
+  }
+  const pick = (arr) => arr[randInt(arr.length)];
+
+  // current base password (segments)
+  let current = null;
+
+  function compose() {
+    const sp = pick(SPECIALS), rf = pick(REFS), vb = pick(VERBS), nm = pick(NUMS);
+    // ~half the time drop the hyphen for variety
+    const sep = randInt(2) ? "-" : "";
+    return { sp, rf, sep, vb, nm, plain: sp + rf + sep + vb + nm };
+  }
+
+  function segHTML(seg) {
+    const span = (cls, txt) => { const s = document.createElement("span"); s.className = cls; s.textContent = txt; return s; };
+    const frag = document.createDocumentFragment();
+    frag.append(span("sp", seg.sp), span("rf", seg.rf));
+    if (seg.sep) frag.append(span("sep", seg.sep));
+    frag.append(span("vb", seg.vb), span("nm", seg.nm));
+    return frag;
+  }
+
+  function classesUsed(str) {
+    let n = 0;
+    if (/[a-z]/.test(str)) n++;
+    if (/[A-Z]/.test(str)) n++;
+    if (/[0-9]/.test(str)) n++;
+    if (/[^A-Za-z0-9]/.test(str)) n++;
+    return n;
+  }
+
+  // honest strength from length + character variety (brute-force framing)
+  const LEVELS = [
+    { word: "Boa",       color: "var(--fair)" },
+    { word: "Forte",     color: "var(--good)" },
+    { word: "Excelente", color: "var(--strong)" },
+  ];
+  function setStrength(str) {
+    const len = str.length, cls = classesUsed(str);
+    let idx = 0;
+    if (len >= 20 && cls >= 3) idx = 2;
+    else if (len >= 14 && cls >= 3) idx = 1;
+    const lvl = LEVELS[idx];
+    const pct = Math.max(20, Math.min(100, (len / 30) * 100));
+    meterFill.style.width = pct + "%";
+    meterFill.style.background = lvl.color;
+    meterWord.textContent = lvl.word;
+    meterWord.style.color = lvl.color;
+  }
+
+  function generate() {
+    current = compose();
+    pwEl.textContent = "";
+    pwEl.appendChild(segHTML(current));
+    $("aRef").textContent = current.rf;
+    $("aVb").textContent = current.vb;
+    $("aNm").textContent = current.nm;
+    metaEl.textContent = current.plain.length + " caracteres";
+    setStrength(current.plain);
+    updatePrefix();
+    hideBatch();
+  }
+
+  function generateBatch(n) {
+    const list = $("batchList");
+    list.innerHTML = "";
+    for (let i = 0; i < n; i++) {
+      const seg = compose();
+      const row = document.createElement("div");
+      row.className = "row";
+      row.appendChild(segHTML(seg));
+      const btn = document.createElement("span");
+      btn.className = "mini-copy"; btn.title = "Copiar";
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.2"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/></svg>';
+      btn.addEventListener("click", () => copyText(seg.plain, "Senha copiada"));
+      row.appendChild(btn);
+      list.appendChild(row);
+    }
+    list.classList.add("show");
+  }
+  function hideBatch() { $("batchList").classList.remove("show"); $("batchList").innerHTML = ""; }
+
+  // ---------- copy ----------
+  async function copyText(text, msg) {
+    if (!text) return;
+    try { await navigator.clipboard.writeText(text); }
+    catch {
+      const t = document.createElement("textarea");
+      t.value = text; document.body.appendChild(t); t.select();
+      document.execCommand("copy"); t.remove();
+    }
+    toastMsg.textContent = msg || "Copiado";
+    toast.classList.add("show");
+    clearTimeout(copyText._t);
+    copyText._t = setTimeout(() => toast.classList.remove("show"), 1600);
+  }
+
+  // ---------- prefix tool ----------
+  const siteInput = $("siteInput"), prefixBadge = $("prefixBadge"), prefixFinal = $("prefixFinal");
+  function currentPrefix() {
+    const raw = (siteInput.value || "Instagram").replace(/[^A-Za-z]/g, "");
+    return (raw.slice(0, 2) || "IN").toUpperCase();
+  }
+  function updatePrefix() {
+    const pfx = currentPrefix();
+    prefixBadge.textContent = pfx;
+    prefixFinal.innerHTML = "";
+    const s = document.createElement("span"); s.className = "pfx"; s.textContent = pfx;
+    prefixFinal.append(s);
+    if (current) prefixFinal.append(segHTML(current));
+  }
+  siteInput.addEventListener("input", updatePrefix);
+
+  // prefix examples (fixed set for teaching)
+  function renderExamples() {
+    const wrap = $("prefixExamples");
+    wrap.innerHTML = "";
+    [["IN","Instagram"],["NU","Nubank"],["NE","Netflix"],["GM","Gmail"]].forEach(([pfx, site]) => {
+      const base = current ? current.plain : "";
+      const el = document.createElement("div");
+      el.className = "pex";
+      el.innerHTML =
+        '<span class="badge">' + pfx + '</span><span class="site">' + site + '</span>' +
+        '<span class="val">' + pfx + base.slice(0, 10) + '…</span>';
+      wrap.appendChild(el);
+    });
+  }
+
+  // prefix table
+  function renderGrid() {
+    const grid = $("prefGrid");
+    SITES.forEach(([pfx, site]) => {
+      const c = document.createElement("div");
+      c.className = "pcell";
+      c.innerHTML = '<span class="badge">' + pfx + '</span><span class="site">' + site + '</span>';
+      grid.appendChild(c);
+    });
+  }
+
+  // rotate the "como funciona" example subtly to feel alive
+  function refreshHowExample() {
+    const seg = compose();
+    $("ex1").textContent = seg.sp + seg.rf;
+    $("ex2").textContent = seg.vb;
+    $("ex3").textContent = seg.nm;
+    $("finalLine").textContent = seg.plain;
+  }
+
+  // ---------- events ----------
+  $("genBtn").addEventListener("click", () => { generate(); renderExamples(); });
+  $("regenBtn").addEventListener("click", (e) => {
+    const b = e.currentTarget; b.classList.remove("spin"); void b.offsetWidth; b.classList.add("spin");
+    generate(); renderExamples();
+  });
+  $("copyBtn").addEventListener("click", (e) => {
+    if (!current) return;
+    e.currentTarget.classList.add("copied");
+    setTimeout(() => e.currentTarget.classList.remove("copied"), 1600);
+    copyText(current.plain, "Senha copiada");
+  });
+  $("prefixCopy").addEventListener("click", () => {
+    if (!current) return;
+    copyText(currentPrefix() + current.plain, "Senha do site copiada");
+  });
+  document.querySelectorAll(".batch button").forEach(b =>
+    b.addEventListener("click", () => generateBatch(+b.dataset.n)));
+  document.addEventListener("keydown", (e) => {
+    if (e.code === "Space" && e.target.tagName !== "INPUT" && e.target.tagName !== "TEXTAREA") {
+      e.preventDefault(); generate(); renderExamples();
+    }
+  });
+
+  // ---------- carregar notícias do dia (bancos.json) ----------
+  async function carregarBancos() {
+    try {
+      const r = await fetch("bancos.json", { cache: "no-store" });
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      const b = await r.json();
+      if (Array.isArray(b.refs) && b.refs.length)     REFS = b.refs;
+      if (Array.isArray(b.verbs) && b.verbs.length)    VERBS = b.verbs;
+      if (Array.isArray(b.nums) && b.nums.length)      NUMS = b.nums;
+      if (Array.isArray(b.specials) && b.specials.length) SPECIALS = b.specials;
+      if (b.gerado_em) {
+        const d = new Date(b.gerado_em);
+        const nota = document.getElementById("fonteNota");
+        if (nota && !isNaN(d)) {
+          nota.textContent = " · atualizado " + d.toLocaleDateString("pt-BR",
+            { day: "2-digit", month: "long" }) + " com as notícias do dia";
+        }
+      }
+    } catch (e) {
+      // sem servidor / offline → segue com a lista de reserva embutida
+      console.info("bancos.json indisponível, usando reserva local:", e.message);
+    }
+  }
+
+  // init
+  renderGrid();
+  (async () => {
+    await carregarBancos();   // tenta notícias do dia; cai na reserva se falhar
+    refreshHowExample();
+    generate();
+    renderExamples();
+  })();
+})();
+</script>
+</body>
+</html>
