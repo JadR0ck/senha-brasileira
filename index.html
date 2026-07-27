@@ -146,7 +146,7 @@
   .meter { margin-top: 18px; display: flex; align-items: center; gap: 13px; }
   .meter-track { flex: 1; height: 5px; border-radius: 99px; background: oklch(93% 0.005 250); overflow: hidden; }
   .meter-fill { height: 100%; width: 0; border-radius: 99px; background: var(--muted); transition: width .4s cubic-bezier(.2,.7,.2,1), background .4s; }
-  .meter-word { font-size: 12px; font-weight: 550; min-width: 66px; text-align: end; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .meter-word { font-size: 12px; font-weight: 550; min-width: 92px; text-align: end; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
 
   /* controls row */
   .controls { padding: 18px 24px 22px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
@@ -531,23 +531,20 @@
     return n;
   }
 
-  // honest strength from length + character variety (brute-force framing)
-  const LEVELS = [
-    { word: "Boa",       color: "var(--fair)" },
-    { word: "Forte",     color: "var(--good)" },
-    { word: "Excelente", color: "var(--strong)" },
-  ];
+  // força pela quantidade de caracteres — cor escala por comprimento
+  function strengthColor(len) {
+    if (len >= 20) return "var(--strong)";
+    if (len >= 14) return "var(--good)";
+    return "var(--fair)";
+  }
   function setStrength(str) {
-    const len = str.length, cls = classesUsed(str);
-    let idx = 0;
-    if (len >= 20 && cls >= 3) idx = 2;
-    else if (len >= 14 && cls >= 3) idx = 1;
-    const lvl = LEVELS[idx];
+    const len = str.length;
     const pct = Math.max(20, Math.min(100, (len / 30) * 100));
+    const color = strengthColor(len);
     meterFill.style.width = pct + "%";
-    meterFill.style.background = lvl.color;
-    meterWord.textContent = lvl.word;
-    meterWord.style.color = lvl.color;
+    meterFill.style.background = color;
+    meterWord.textContent = len + " caracteres";
+    meterWord.style.color = color;
   }
 
   function generate() {
@@ -557,7 +554,7 @@
     $("aRef").textContent = current.rf;
     $("aVb").textContent = current.vb;
     $("aNm").textContent = current.nm;
-    metaEl.textContent = current.plain.length + " caracteres";
+    metaEl.textContent = classesUsed(current.plain) + " tipos de caractere";
     setStrength(current.plain);
     updatePrefix();
     hideBatch();
