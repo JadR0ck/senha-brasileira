@@ -1,8 +1,21 @@
 {
-  "gerado_em": "2026-07-31T11:14:51+00:00",
+  "gerado_em": "2026-08-01T10:24:24+00:00",
   "fonte": "RSS cultura pop BR (Globo/G1)",
   "manchetes_lidas": 400,
   "refs": [
+    "coracoespartidos",
+    "gonzaguinha",
+    "governotrump",
+    "badbunny",
+    "martinho",
+    "claudiojorge",
+    "neilopes",
+    "manolosolo",
+    "labirinto",
+    "lauanaprado",
+    "saopaulo",
+    "joaobosco",
+    "amigos",
     "odisseia",
     "christophernolan",
     "tomcruise",
@@ -49,20 +62,7 @@
     "jogada",
     "envolve",
     "deixadas",
-    "rachelreis",
-    "rosapassos",
-    "assucena",
-    "concerto",
-    "orquestrasinfonica",
-    "arianagrande",
-    "roberta",
-    "antigos",
-    "ultimo",
-    "katieholmes",
-    "premio",
-    "martinho",
-    "musicas",
-    "equilibrivm"
+    "rachelreis"
   ],
   "verbs": [
     "fiqueiESPERANDO",
@@ -280,6 +280,8 @@
     "venciOMEUMEDO"
   ],
   "nums": [
+    "2026",
+    "62",
     "90",
     "20",
     "21",
@@ -293,9 +295,7 @@
     "14",
     "37",
     "100",
-    "2028",
-    "149",
-    "13"
+    "2028"
   ],
   "specials": [
     "!",
