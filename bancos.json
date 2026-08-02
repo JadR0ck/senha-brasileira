@@ -1,8 +1,16 @@
 {
-  "gerado_em": "2026-08-01T10:24:24+00:00",
+  "gerado_em": "2026-08-02T10:22:55+00:00",
   "fonte": "RSS cultura pop BR (Globo/G1)",
   "manchetes_lidas": 400,
   "refs": [
+    "vincentpastore",
+    "sopranos",
+    "noturna",
+    "sandra",
+    "blackpantera",
+    "continental",
+    "sinfonia",
+    "petrobras",
     "coracoespartidos",
     "gonzaguinha",
     "governotrump",
@@ -54,15 +62,7 @@
     "jaredleto",
     "eliezer",
     "ivanlins",
-    "sambadouro",
-    "grammy",
-    "kavinsky",
-    "nightcall",
-    "cauareymond",
-    "jogada",
-    "envolve",
-    "deixadas",
-    "rachelreis"
+    "sambadouro"
   ],
   "verbs": [
     "fiqueiESPERANDO",
@@ -280,6 +280,7 @@
     "venciOMEUMEDO"
   ],
   "nums": [
+    "80",
     "2026",
     "62",
     "90",
@@ -294,8 +295,7 @@
     "170",
     "14",
     "37",
-    "100",
-    "2028"
+    "100"
   ],
   "specials": [
     "!",
