@@ -1,8 +1,17 @@
 {
-  "gerado_em": "2026-08-22T09:15:09+00:00",
+  "gerado_em": "2026-08-23T09:15:21+00:00",
   "fonte": "RSS cultura pop BR (Globo/G1)",
   "manchetes_lidas": 400,
   "refs": [
+    "bandamensageiros",
+    "aruanda",
+    "cantora",
+    "chicobuarque",
+    "justica",
+    "microsoft",
+    "discord",
+    "michaelwright",
+    "exercitoinutil",
     "anaissylla",
     "joaodonato",
     "gilbertogil",
@@ -45,7 +54,6 @@
     "league",
     "legends",
     "haydenpanettiere",
-    "chicobuarque",
     "anitta",
     "sterlingpoint",
     "hotchip",
@@ -54,15 +62,7 @@
     "documentario",
     "mariliapera",
     "assista",
-    "demonhunter",
-    "netflix",
-    "guerreiras",
-    "avengedsevenfold",
-    "casohaydenpanettiere",
-    "agenciaantidrogas",
-    "aldirblanc",
-    "equale",
-    "guinga"
+    "demonhunter"
   ],
   "verbs": [
     "fiqueiESPERANDO",
@@ -280,6 +280,7 @@
     "venciOMEUMEDO"
   ],
   "nums": [
+    "70",
     "2027",
     "15",
     "80",
@@ -294,8 +295,7 @@
     "10",
     "88",
     "36",
-    "90",
-    "2022"
+    "90"
   ],
   "specials": [
     "!",
