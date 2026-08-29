@@ -1,8 +1,26 @@
 {
-  "gerado_em": "2026-08-28T20:26:52+00:00",
+  "gerado_em": "2026-08-29T14:02:36+00:00",
   "fonte": "RSS cultura pop BR (Globo/G1)",
   "manchetes_lidas": 400,
   "refs": [
+    "rodrigosantos",
+    "nelsonmotta",
+    "chicochico",
+    "frejat",
+    "sandra",
+    "luizcaldas",
+    "leilapinheiro",
+    "jotaquest",
+    "timmaia",
+    "darkhorse",
+    "jairbolsonaro",
+    "brasileira",
+    "bigbrother",
+    "argentina",
+    "assista",
+    "celinedion",
+    "franca",
+    "getulioabelha",
     "fernandamontenegro",
     "pedrowaddington",
     "majucoutinho",
@@ -44,25 +62,7 @@
     "tiktok",
     "ridleyscott",
     "mariabethania",
-    "pilares",
-    "donacano",
-    "yayoikusama",
-    "busyphilipps",
-    "branquelas",
-    "autentico",
-    "harrypotter",
-    "rupertgrint",
-    "ronweasley",
-    "broadway",
-    "timcurry",
-    "luedjiluna",
-    "liukid",
-    "sempre",
-    "mileycyrus",
-    "dollyparton",
-    "maroon",
-    "riopreto",
-    "romeroferro"
+    "pilares"
   ],
   "verbs": [
     "fiqueiESPERANDO",
@@ -280,6 +280,7 @@
     "venciOMEUMEDO"
   ],
   "nums": [
+    "2026",
     "50",
     "25",
     "2027",
@@ -294,8 +295,7 @@
     "24",
     "30",
     "70",
-    "90",
-    "2022"
+    "90"
   ],
   "specials": [
     "!",
