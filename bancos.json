@@ -1,13 +1,19 @@
 {
-  "gerado_em": "2026-09-19T12:43:45+00:00",
+  "gerado_em": "2026-09-20T13:15:14+00:00",
   "fonte": "RSS cultura pop BR (Globo/G1)",
   "manchetes_lidas": 400,
   "refs": [
-    "fernandatorres",
     "deborabloch",
+    "mariabethania",
+    "bnegao",
+    "zeliaduncan",
+    "marcossacramento",
+    "sheeran",
+    "mariamadalena",
+    "biblia",
+    "fernandatorres",
     "depois",
     "odeteroitman",
-    "sheeran",
     "virginiafonseca",
     "duncansheik",
     "barelybreathing",
@@ -56,13 +62,7 @@
     "morrepetermax",
     "macklemore",
     "palestina",
-    "lazaroramos",
-    "feitopipa",
-    "gilliangilbert",
-    "neworder",
-    "lenadunham",
-    "amigos",
-    "marisaorth"
+    "lazaroramos"
   ],
   "verbs": [
     "fiqueiESPERANDO",
@@ -280,10 +280,12 @@
     "venciOMEUMEDO"
   ],
   "nums": [
-    "56",
-    "10",
-    "2026",
     "20",
+    "60",
+    "30",
+    "10",
+    "56",
+    "2026",
     "2006",
     "300",
     "50",
@@ -293,9 +295,7 @@
     "85",
     "2024",
     "15",
-    "44",
-    "30",
-    "18"
+    "44"
   ],
   "specials": [
     "!",
