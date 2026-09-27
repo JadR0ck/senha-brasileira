@@ -1,8 +1,23 @@
 {
-  "gerado_em": "2026-09-26T13:25:40+00:00",
+  "gerado_em": "2026-09-27T14:21:28+00:00",
   "fonte": "RSS cultura pop BR (Globo/G1)",
   "manchetes_lidas": 400,
   "refs": [
+    "zeliaduncan",
+    "mariaberaldo",
+    "pericles",
+    "anacastela",
+    "neymatogrosso",
+    "zecapagodinho",
+    "representante",
+    "brasil",
+    "feitopipa",
+    "sertao",
+    "arlindocruz",
+    "vanessa",
+    "investigado",
+    "luminosidade",
+    "galcosta",
     "caetanoveloso",
     "coracao",
     "joaogilberto",
@@ -18,7 +33,6 @@
     "macklemore",
     "palestinalivre",
     "sheeran",
-    "brasil",
     "grupopagode",
     "estrelas",
     "robertamiranda",
@@ -38,7 +52,6 @@
     "leticia",
     "guitarra",
     "straykids",
-    "pericles",
     "carnaval",
     "rosalia",
     "dollyparton",
@@ -49,20 +62,7 @@
     "teresacristina",
     "cantora",
     "bradpitt",
-    "coracaoselvagem",
-    "michaeljackson",
-    "marinairis",
-    "wilsonmoreira",
-    "hilaryduff",
-    "saopaulo",
-    "composta",
-    "pagina",
-    "chitaozinho",
-    "xororo",
-    "harveyweinstein",
-    "triomocoto",
-    "pauloricardo",
-    "marvingaye"
+    "coracaoselvagem"
   ],
   "verbs": [
     "fiqueiESPERANDO",
@@ -280,6 +280,7 @@
     "venciOMEUMEDO"
   ],
   "nums": [
+    "81",
     "40",
     "80",
     "43",
@@ -294,8 +295,7 @@
     "59",
     "10",
     "95",
-    "25",
-    "27"
+    "25"
   ],
   "specials": [
     "!",
