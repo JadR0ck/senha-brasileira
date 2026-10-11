@@ -1,8 +1,14 @@
 {
-  "gerado_em": "2026-10-10T14:51:16+00:00",
+  "gerado_em": "2026-10-11T15:09:20+00:00",
   "fonte": "RSS cultura pop BR (Globo/G1)",
   "manchetes_lidas": 400,
   "refs": [
+    "mariarita",
+    "redescobrir",
+    "elisregina",
+    "wagnermoura",
+    "fernandomeirelles",
+    "petracosta",
     "marisamonte",
     "juliamestre",
     "marijasca",
@@ -56,13 +62,7 @@
     "literatura",
     "loucos",
     "premionobel",
-    "chrisisaak",
-    "elvispresley",
-    "mulheres",
-    "zecapagodinho",
-    "geraldoazevedo",
-    "josecarloscapinan",
-    "julianalinhares"
+    "chrisisaak"
   ],
   "verbs": [
     "fiqueiESPERANDO",
@@ -280,6 +280,7 @@
     "venciOMEUMEDO"
   ],
   "nums": [
+    "90",
     "14",
     "75",
     "30",
@@ -294,8 +295,7 @@
     "200",
     "10",
     "1976",
-    "50",
-    "86"
+    "50"
   ],
   "specials": [
     "!",
