@@ -1,8 +1,24 @@
 {
-  "gerado_em": "2026-10-11T15:09:20+00:00",
+  "gerado_em": "2026-10-12T18:17:14+00:00",
   "fonte": "RSS cultura pop BR (Globo/G1)",
   "manchetes_lidas": 400,
   "refs": [
+    "anacosta",
+    "karinah",
+    "ivonelara",
+    "jovelinaperolanegra",
+    "heloisaperisse",
+    "niveamaria",
+    "avenidabrasil",
+    "joelma",
+    "nataliasarraff",
+    "detonautas",
+    "criancas",
+    "morreedsonsilva",
+    "familia",
+    "pinturas",
+    "renoir",
+    "franca",
     "mariarita",
     "redescobrir",
     "elisregina",
@@ -24,7 +40,6 @@
     "pericles",
     "patatipatata",
     "mariahelena",
-    "criancas",
     "coletivogiragirar",
     "tincoas",
     "prettylittleliars",
@@ -47,22 +62,7 @@
     "panico",
     "renner",
     "habeascorpus",
-    "marjorieestiano",
-    "anygabrielly",
-    "justica",
-    "lollapalooza",
-    "charlixcx",
-    "travisscott",
-    "killers",
-    "davidguetta",
-    "alegrias",
-    "mariaalcina",
-    "festival",
-    "annecarson",
-    "literatura",
-    "loucos",
-    "premionobel",
-    "chrisisaak"
+    "marjorieestiano"
   ],
   "verbs": [
     "fiqueiESPERANDO",
@@ -280,8 +280,9 @@
     "venciOMEUMEDO"
   ],
   "nums": [
-    "90",
+    "12",
     "14",
+    "90",
     "75",
     "30",
     "72",
@@ -294,8 +295,7 @@
     "102",
     "200",
     "10",
-    "1976",
-    "50"
+    "1976"
   ],
   "specials": [
     "!",
