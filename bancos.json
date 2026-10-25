@@ -1,8 +1,13 @@
 {
-  "gerado_em": "2026-10-24T12:58:06+00:00",
+  "gerado_em": "2026-10-25T13:24:22+00:00",
   "fonte": "RSS cultura pop BR (Globo/G1)",
   "manchetes_lidas": 400,
   "refs": [
+    "famosos",
+    "rodrigotorrero",
+    "rebecamatta",
+    "pelvica",
+    "luanpereira",
     "oswaldomontenegro",
     "doloresduran",
     "chicobuarque",
@@ -57,12 +62,7 @@
     "senhor",
     "masseffect",
     "bioware",
-    "dragonage",
-    "guitarrista",
-    "offspring",
-    "disney",
-    "brunocapinan",
-    "galcosta"
+    "dragonage"
   ],
   "verbs": [
     "fiqueiESPERANDO",
@@ -280,6 +280,8 @@
     "venciOMEUMEDO"
   ],
   "nums": [
+    "2026",
+    "13",
     "70",
     "282",
     "93",
@@ -293,9 +295,7 @@
     "30",
     "20",
     "84",
-    "52",
-    "2010",
-    "2022"
+    "52"
   ],
   "specials": [
     "!",
