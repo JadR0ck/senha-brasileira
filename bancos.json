@@ -1,8 +1,22 @@
 {
-  "gerado_em": "2026-10-25T13:24:22+00:00",
+  "gerado_em": "2026-10-26T15:32:23+00:00",
   "fonte": "RSS cultura pop BR (Globo/G1)",
   "manchetes_lidas": 400,
   "refs": [
+    "cancoes",
+    "miltonnascimento",
+    "travessia",
+    "studiocia",
+    "chrisbrown",
+    "reinounido",
+    "belchior",
+    "alucinacao",
+    "artistas",
+    "morreoswaldinho",
+    "acordeon",
+    "ludmilla",
+    "luisasonza",
+    "simaria",
     "famosos",
     "rodrigotorrero",
     "rebecamatta",
@@ -48,21 +62,7 @@
     "atrizjudidench",
     "zeliaduncan",
     "mauriciopereira",
-    "julgamento",
-    "redbulldanceyourstyle",
-    "batman",
-    "oliviawilde",
-    "wantyoursex",
-    "ferrugem",
-    "alcione",
-    "neymatogrosso",
-    "breguissimo",
-    "rowling",
-    "tolkien",
-    "senhor",
-    "masseffect",
-    "bioware",
-    "dragonage"
+    "julgamento"
   ],
   "verbs": [
     "fiqueiESPERANDO",
@@ -280,6 +280,7 @@
     "venciOMEUMEDO"
   ],
   "nums": [
+    "80",
     "2026",
     "13",
     "70",
@@ -294,8 +295,7 @@
     "78",
     "30",
     "20",
-    "84",
-    "52"
+    "84"
   ],
   "specials": [
     "!",
