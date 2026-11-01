@@ -1,15 +1,20 @@
 {
-  "gerado_em": "2026-10-31T14:52:14+00:00",
+  "gerado_em": "2026-11-01T15:30:34+00:00",
   "fonte": "RSS cultura pop BR (Globo/G1)",
   "manchetes_lidas": 400,
   "refs": [
+    "anelisassumpcao",
+    "alicecarvalho",
+    "liniker",
+    "teteespindola",
+    "thalma",
+    "freitas",
+    "solanoribeiro",
     "luanapiovani",
     "neymar",
     "claudettesoares",
     "joaquim",
     "mariagadu",
-    "thalma",
-    "freitas",
     "alaidecosta",
     "emicida",
     "morumbis",
@@ -57,12 +62,7 @@
     "saopaulo",
     "morumbi",
     "chicolobo",
-    "recibo",
-    "brasil",
-    "russellbrand",
-    "querover",
-    "juliettefreire",
-    "kaiquecerveny"
+    "recibo"
   ],
   "verbs": [
     "fiqueiESPERANDO",
@@ -280,6 +280,7 @@
     "venciOMEUMEDO"
   ],
   "nums": [
+    "1965",
     "91",
     "76",
     "2026",
@@ -294,8 +295,7 @@
     "90",
     "80",
     "46",
-    "70",
-    "282"
+    "70"
   ],
   "specials": [
     "!",
