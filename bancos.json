@@ -1,10 +1,17 @@
 {
-  "gerado_em": "2026-11-07T15:14:10+00:00",
+  "gerado_em": "2026-11-08T15:38:08+00:00",
   "fonte": "RSS cultura pop BR (Globo/G1)",
   "manchetes_lidas": 400,
   "refs": [
+    "humbertogessinger",
+    "dadovilla",
+    "ducaleindecker",
+    "rogerhenri",
+    "robertamiranda",
+    "matogrosso",
+    "richardlloyd",
+    "television",
     "niltontravesso",
-    "brasil",
     "robertpattinson",
     "nicholashoult",
     "jamesbond",
@@ -55,14 +62,7 @@
     "bobdylan",
     "vaticano",
     "ludmilla",
-    "puterrier",
-    "hitmaker",
-    "zezecamargo",
-    "nordeste",
-    "bethcarvalho",
-    "enzobelmonte",
-    "obrigado",
-    "madrinha"
+    "puterrier"
   ],
   "verbs": [
     "fiqueiESPERANDO",
@@ -280,10 +280,12 @@
     "venciOMEUMEDO"
   ],
   "nums": [
+    "71",
+    "75",
+    "15",
     "007",
     "200",
     "52",
-    "15",
     "50",
     "33",
     "60",
@@ -293,9 +295,7 @@
     "2026",
     "1965",
     "91",
-    "76",
-    "86",
-    "13"
+    "76"
   ],
   "specials": [
     "!",
