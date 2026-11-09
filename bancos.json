@@ -1,8 +1,16 @@
 {
-  "gerado_em": "2026-11-08T15:38:08+00:00",
+  "gerado_em": "2026-11-09T19:15:21+00:00",
   "fonte": "RSS cultura pop BR (Globo/G1)",
   "manchetes_lidas": 400,
   "refs": [
+    "paulmccartney",
+    "forbes",
+    "russellbrand",
+    "cezarmendes",
+    "itapuano",
+    "maestra",
+    "marisamonte",
+    "phonica",
     "humbertogessinger",
     "dadovilla",
     "ducaleindecker",
@@ -32,7 +40,6 @@
     "musical",
     "moraesmoreira",
     "carnaval",
-    "russellbrand",
     "kimmariejohnson",
     "barrados",
     "cavalo",
@@ -55,14 +62,7 @@
     "mariliamendonca",
     "spotify",
     "johnmalkovich",
-    "moisesnavarro",
-    "alguem",
-    "producao",
-    "papaleaoxiv",
-    "bobdylan",
-    "vaticano",
-    "ludmilla",
-    "puterrier"
+    "moisesnavarro"
   ],
   "verbs": [
     "fiqueiESPERANDO",
@@ -280,6 +280,8 @@
     "venciOMEUMEDO"
   ],
   "nums": [
+    "20",
+    "10",
     "71",
     "75",
     "15",
@@ -293,9 +295,7 @@
     "64",
     "03",
     "2026",
-    "1965",
-    "91",
-    "76"
+    "1965"
   ],
   "specials": [
     "!",
