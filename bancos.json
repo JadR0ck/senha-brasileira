@@ -1,8 +1,17 @@
 {
-  "gerado_em": "2026-11-09T19:15:21+00:00",
+  "gerado_em": "2026-11-10T16:38:19+00:00",
   "fonte": "RSS cultura pop BR (Globo/G1)",
   "manchetes_lidas": 400,
   "refs": [
+    "mangueira",
+    "carnaval",
+    "eminem",
+    "capitalinicial",
+    "saopaulo",
+    "jamesgunn",
+    "petersafran",
+    "marvel",
+    "studios",
     "paulmccartney",
     "forbes",
     "russellbrand",
@@ -39,7 +48,6 @@
     "reginaldorossi",
     "musical",
     "moraesmoreira",
-    "carnaval",
     "kimmariejohnson",
     "barrados",
     "cavalo",
@@ -54,15 +62,7 @@
     "katyperry",
     "reinounido",
     "reality",
-    "casamento",
-    "primeiravista",
-    "coperni",
-    "gloriagroove",
-    "carvalho",
-    "mariliamendonca",
-    "spotify",
-    "johnmalkovich",
-    "moisesnavarro"
+    "casamento"
   ],
   "verbs": [
     "fiqueiESPERANDO",
@@ -280,6 +280,8 @@
     "venciOMEUMEDO"
   ],
   "nums": [
+    "2027",
+    "45",
     "20",
     "10",
     "71",
@@ -293,9 +295,7 @@
     "60",
     "35",
     "64",
-    "03",
-    "2026",
-    "1965"
+    "03"
   ],
   "specials": [
     "!",
