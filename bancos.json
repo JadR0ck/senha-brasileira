@@ -1,14 +1,24 @@
 {
-  "gerado_em": "2026-11-13T16:49:00+00:00",
+  "gerado_em": "2026-11-14T15:23:00+00:00",
   "fonte": "RSS cultura pop BR (Globo/G1)",
   "manchetes_lidas": 400,
   "refs": [
+    "nandoreis",
+    "garotin",
+    "cassiaeller",
+    "luansantana",
+    "rogeriofroes",
+    "cassiano",
+    "claudettesoares",
+    "tonytornado",
+    "christiancousins",
+    "jardim",
+    "infancia",
     "avrillavigne",
     "candidatas",
     "missuniverso",
     "hayleywilliams",
     "bolsonaro",
-    "claudettesoares",
     "gerarddepardieu",
     "rosalia",
     "grammylatino",
@@ -52,17 +62,7 @@
     "quanto",
     "empresarios",
     "escalado",
-    "severosnape",
-    "harrypotter",
-    "existe",
-    "xboxone",
-    "comissao",
-    "camara",
-    "premiopaulogustavo",
-    "robertocarlos",
-    "victormedeiros",
-    "detalhes",
-    "dualipa"
+    "severosnape"
   ],
   "verbs": [
     "fiqueiESPERANDO",
@@ -280,6 +280,8 @@
     "venciOMEUMEDO"
   ],
   "nums": [
+    "92",
+    "43",
     "91",
     "50",
     "2027",
@@ -293,9 +295,7 @@
     "10",
     "71",
     "75",
-    "15",
-    "007",
-    "200"
+    "15"
   ],
   "specials": [
     "!",
