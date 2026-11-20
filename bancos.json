@@ -1,8 +1,23 @@
 {
-  "gerado_em": "2026-11-19T17:46:07+00:00",
+  "gerado_em": "2026-11-20T17:22:55+00:00",
   "fonte": "RSS cultura pop BR (Globo/G1)",
   "manchetes_lidas": 400,
   "refs": [
+    "gerarddepardieu",
+    "michelhouellebecq",
+    "franca",
+    "blackpantera",
+    "mateusfazenorock",
+    "jogosvorazes",
+    "amanhecer",
+    "colheita",
+    "claudettesoares",
+    "pedrosampaio",
+    "libertadores",
+    "deeppurple",
+    "brasil",
+    "marlonjackson",
+    "michaeljackson",
     "flaviabittencourt",
     "geraldoazevedo",
     "ayrtonmontarroyos",
@@ -24,7 +39,6 @@
     "sylvianazareth",
     "anitta",
     "entenda",
-    "brasil",
     "fernandatorres",
     "glastonbury",
     "harrystyles",
@@ -48,21 +62,7 @@
     "joycemoreno",
     "johnnyalf",
     "jeffbezos",
-    "robertpattinson",
-    "jamesbond",
-    "integrantes",
-    "vouzuar",
-    "ferias",
-    "zelandia",
-    "gameawards",
-    "indicada",
-    "grammy",
-    "elianeelias",
-    "tomjobim",
-    "chicobuarque",
-    "faithmore",
-    "duquesa",
-    "kingsaints"
+    "robertpattinson"
   ],
   "verbs": [
     "fiqueiESPERANDO",
@@ -280,6 +280,7 @@
     "venciOMEUMEDO"
   ],
   "nums": [
+    "11",
     "18",
     "100",
     "190",
@@ -294,8 +295,7 @@
     "007",
     "2026",
     "2016",
-    "13",
-    "16"
+    "13"
   ],
   "specials": [
     "!",
