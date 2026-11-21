@@ -1,8 +1,12 @@
 {
-  "gerado_em": "2026-11-20T17:22:55+00:00",
+  "gerado_em": "2026-11-21T16:27:42+00:00",
   "fonte": "RSS cultura pop BR (Globo/G1)",
   "manchetes_lidas": 400,
   "refs": [
+    "alaidecosta",
+    "tatimachado",
+    "rafael",
+    "diogonogueira",
     "gerarddepardieu",
     "michelhouellebecq",
     "franca",
@@ -56,13 +60,9 @@
     "outrocarnaval",
     "pupillo",
     "luciomaia",
-    "alaidecosta",
     "fatimaguedes",
     "renato",
-    "joycemoreno",
-    "johnnyalf",
-    "jeffbezos",
-    "robertpattinson"
+    "joycemoreno"
   ],
   "verbs": [
     "fiqueiESPERANDO",
@@ -280,6 +280,8 @@
     "venciOMEUMEDO"
   ],
   "nums": [
+    "2026",
+    "22",
     "11",
     "18",
     "100",
@@ -293,9 +295,7 @@
     "20",
     "1978",
     "007",
-    "2026",
-    "2016",
-    "13"
+    "2016"
   ],
   "specials": [
     "!",
