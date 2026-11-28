@@ -1,8 +1,18 @@
 {
-  "gerado_em": "2026-11-27T18:31:31+00:00",
+  "gerado_em": "2026-11-28T17:13:51+00:00",
   "fonte": "RSS cultura pop BR (Globo/G1)",
   "manchetes_lidas": 400,
   "refs": [
+    "martinho",
+    "gilbertogil",
+    "jorgebenjor",
+    "pedroluis",
+    "pilares",
+    "criacoes",
+    "sandrapera",
+    "gonzaguinha",
+    "tainacosta",
+    "coringa",
     "zecaveloso",
     "maquina",
     "djavan",
@@ -52,17 +62,7 @@
     "brisas",
     "steviewonder",
     "william",
-    "harrypotter",
-    "janeiro",
-    "parastooahmadi",
-    "conceicaoevaristo",
-    "chitaozinho",
-    "xororo",
-    "marciacastro",
-    "salvador",
-    "liniker",
-    "maeana",
-    "marciashort"
+    "harrypotter"
   ],
   "verbs": [
     "fiqueiESPERANDO",
@@ -280,6 +280,7 @@
     "venciOMEUMEDO"
   ],
   "nums": [
+    "88",
     "1999",
     "50",
     "2000",
@@ -294,8 +295,7 @@
     "12",
     "74",
     "80",
-    "70",
-    "13"
+    "70"
   ],
   "specials": [
     "!",
